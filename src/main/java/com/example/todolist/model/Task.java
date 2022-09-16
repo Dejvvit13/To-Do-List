@@ -1,11 +1,13 @@
 package com.example.todolist.model;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Getter
+@Setter
 @Entity
 @Table(name = "tasks")
 public class Task {
@@ -17,6 +19,5 @@ public class Task {
     private boolean done;
 
     public Task() {
-        // TODO document why this constructor is empty
     }
 }
