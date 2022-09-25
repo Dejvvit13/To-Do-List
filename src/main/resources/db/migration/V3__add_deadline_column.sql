@@ -1,0 +1,1 @@
+ALTER TABLE tasks add column deadline datetime null;
