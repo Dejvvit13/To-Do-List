@@ -16,7 +16,9 @@ public abstract class BaseTaskClass {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotBlank(message = "Description can't be empty") String description;
+    @Setter(AccessLevel.PUBLIC)
+    @NotBlank(message = "Description can't be empty")
+    String description;
 
     @Setter(AccessLevel.PUBLIC)
     boolean done;

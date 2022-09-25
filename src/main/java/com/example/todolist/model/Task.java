@@ -18,6 +18,7 @@ import java.time.LocalDateTime;
 @Table(name = "tasks")
 public class Task extends BaseTaskClass {
 
+
     private LocalDateTime deadline;
 
     @Getter(AccessLevel.PACKAGE)
@@ -25,6 +26,10 @@ public class Task extends BaseTaskClass {
     @JoinColumn(name = "task_group_id")
     private TaskGroup group;
 
+    public Task(String description, LocalDateTime deadline) {
+        this.deadline = deadline;
+        this.description = description;
+    }
 
     public void updateFrom(final Task source) {
         this.description = source.description;

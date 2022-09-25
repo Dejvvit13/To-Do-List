@@ -17,6 +17,13 @@ public class TaskConfigurationProperties {
     @Setter
     public static class Template {
         boolean isAllowMultipleTasks;
+
+        public boolean isAllowMultipleTasks() {
+            return isAllowMultipleTasks;
+        }
+        public void setAllowMultipleTasks(boolean allowMultipleTasks) {
+            isAllowMultipleTasks = allowMultipleTasks;
+        }
     }
 
 

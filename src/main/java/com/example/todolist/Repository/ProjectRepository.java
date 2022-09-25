@@ -3,12 +3,13 @@ package com.example.todolist.Repository;
 import com.example.todolist.model.Project;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ProjectRepository {
 
     List<Project> findAll();
 
-    Project findById(Long id);
+    Optional<Project> findById(int id);
 
     Project save(Project project);
 

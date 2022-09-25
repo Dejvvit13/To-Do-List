@@ -20,9 +20,11 @@ public class TaskGroup extends BaseTaskClass {
     @Getter(AccessLevel.PRIVATE)
     private Audit audit = new Audit();
 
+    @Setter(AccessLevel.PUBLIC)
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "group")
     private Set<Task> tasks;
 
+    @Setter(AccessLevel.PUBLIC)
     @ManyToOne
     @JoinColumn(name = "project_id")
     private Project project;
