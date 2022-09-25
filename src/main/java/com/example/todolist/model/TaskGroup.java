@@ -29,6 +29,8 @@ public class TaskGroup extends BaseTaskClass {
     @JoinColumn(name = "project_id")
     private Project project;
 
+
+
     public void updateFrom(final TaskGroup source) {
         this.description = source.description;
         this.done = source.done;

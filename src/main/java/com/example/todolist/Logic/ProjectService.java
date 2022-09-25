@@ -35,7 +35,7 @@ public class ProjectService {
     }
 
     public GroupReadModel createGroup(int projectId, LocalDateTime deadline) {
-        if (taskGroupRepository.existsByDoneIsFalseAndProject_Id(projectId) && !config.getTemplate().isAllowMultipleTasks()) {
+        if (!config.getTemplate().isAllowMultipleTasks() && taskGroupRepository.existsByDoneIsFalseAndProject_Id(projectId)) {
             throw new IllegalStateException("Only one undone group from project is allowed");
         }
         GroupWriteModel groupWriteModel = projectRepository.findById(projectId)
@@ -51,6 +51,8 @@ public class ProjectService {
                                         return model;
                                     }).collect(Collectors.toSet())
                     );
+                    result.setProject(project);
+                    taskGroupRepository.save(result.toGroup());
                     return result;
                 })
                 .orElseThrow(() -> new IllegalArgumentException("Project with given id not found"));
