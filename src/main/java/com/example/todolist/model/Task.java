@@ -18,7 +18,6 @@ import java.time.LocalDateTime;
 @Table(name = "tasks")
 public class Task extends BaseTaskClass {
 
-
     private LocalDateTime deadline;
 
     @Getter(AccessLevel.PACKAGE)

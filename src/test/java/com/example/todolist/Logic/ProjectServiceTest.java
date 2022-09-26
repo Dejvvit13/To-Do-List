@@ -3,6 +3,8 @@ package com.example.todolist.Logic;
 import com.example.todolist.Repository.ProjectRepository;
 import com.example.todolist.Repository.TaskGroupRepository;
 import com.example.todolist.TaskConfigurationProperties;
+import com.example.todolist.model.Project;
+import com.example.todolist.model.ProjectStep;
 import com.example.todolist.model.Projection.GroupReadModel;
 import com.example.todolist.model.TaskGroup;
 import org.junit.jupiter.api.DisplayName;
@@ -11,6 +13,7 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
@@ -82,7 +85,9 @@ class ProjectServiceTest {
         var today = LocalDate.now().atStartOfDay();
         //and
         var mockRepository = mock(ProjectRepository.class);
-        when(mockRepository.findById(anyInt())).thenReturn(Optional.empty());
+        var project = projectWith("bar", Set.of(-1, -2));
+        when(mockRepository.findById(anyInt()))
+                .thenReturn(Optional.of(project));
         //and
         InMemoryGroupRepository inMemoryGroupRepository = inMemoryGroupRepository();
         int countBeforeCall = inMemoryGroupRepository.count();
@@ -93,10 +98,28 @@ class ProjectServiceTest {
         //when
         GroupReadModel result = toTest.createGroup(1, today);
         //then
+        assertThat(result.getDescription())
+                .isEqualTo("bar");
+        assertThat(result.getDeadline()).isEqualTo(today.minusDays(1));
+        assertThat(result.getTasks().stream().allMatch(task -> task.getDescription().equals("foo")));
         assertThat(countBeforeCall + 1)
-                .isNotEqualTo(inMemoryGroupRepository.count());
+                .isEqualTo(inMemoryGroupRepository.count());
     }
 
+    private Project projectWith(String projectDescription, Set<Integer> daysToDeadline) {
+        Set<ProjectStep> steps = daysToDeadline.stream()
+                .map(days -> {
+                    var step = mock(ProjectStep.class);
+                    when(step.getDescription()).thenReturn("foo");
+                    when(step.getDaysToDeadline()).thenReturn(days);
+                    return step;
+                }).collect(Collectors.toSet());
+
+        var result = mock(Project.class);
+        when(result.getDescription()).thenReturn(projectDescription);
+        when(result.getSteps()).thenReturn(steps);
+        return result;
+    }
 
     private TaskConfigurationProperties configurationReturning(boolean value) {
         var mockTemplate = mock(TaskConfigurationProperties.Template.class);
@@ -139,13 +162,14 @@ class ProjectServiceTest {
         public TaskGroup save(TaskGroup entity) {
             if (entity.getId() == 0) {
                 try {
-                    TaskGroup.class.getDeclaredField("id").set(entity, ++index);
+                    var field = TaskGroup.class.getSuperclass().getDeclaredField("id");
+                    field.setAccessible(true);
+                    field.set(entity, ++index);
                 } catch (NoSuchFieldException | IllegalAccessException e) {
                     throw new RuntimeException(e);
                 }
-            } else {
-                map.put(entity.getId(), entity);
             }
+            map.put(entity.getId(), entity);
             return entity;
         }
 

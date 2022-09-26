@@ -1,13 +1,9 @@
 
-p
-@src/test/java/com/example/todolist/ToDoListApplicationTests.java,e\e\eeb93d8f1dee0e4f2086e75391234436c54f6c75
 :
 
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
 9
 	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
-k
-;src/main/java/com/example/todolist/ToDoListApplication.java,3\5\35193e0adbf78902ba04ee11605e431e767e0fb1
 c
 3src/main/java/com/example/todolist/model/Audit.java,0\1\016f56b5f7202f2937c5cf6ec51a8e2e691335ce
 i
@@ -18,12 +14,8 @@ v
 Fsrc/main/java/com/example/todolist/Adapter/SqlTaskGroupRepository.java,a\0\a006bf39e67ef644d67f0f3c97d2472fc401bea9
 q
 Asrc/main/java/com/example/todolist/Adapter/SqlTaskRepository.java,c\2\c20f4fc4e857fe866f36fb92540d8d6f082ae115
-q
-Asrc/main/java/com/example/todolist/Repository/TaskRepository.java,5\a\5af9b78586062de79eaf2b3c6505d7ada4f4ecc5
 g
 7src/main/java/db/migration/V2__insert_example_todo.java,8\d\8d5e0dfbadce99d542170be863c8c705ada1c02c
-k
-;src/main/java/com/example/todolist/model/BaseTaskClass.java,6\c\6ca4267f35c6eee465dba5162cffb5eadea4907f
 w
 Gsrc/main/java/com/example/todolist/model/Projection/GroupReadModel.java,e\a\ea9aed2ef51d95535ccf95d777ad606203181441
 {
@@ -32,11 +24,13 @@ Ksrc/main/java/com/example/todolist/model/Projection/GroupTaskReadModel.java,7\
 Lsrc/main/java/com/example/todolist/model/Projection/GroupTaskWriteModel.java,e\e\ee1b139efeb9fb97668e05bd940968b3203d1768
 t
 Dsrc/main/java/com/example/todolist/Repository/ProjectRepository.java,5\9\59bed946197ffd5f483c036f770bbab0c84c0534
-b
-2src/main/java/com/example/todolist/model/Task.java,0\f\0fed4986424e565b3fdf00b4ef721aa1584b77dc
 s
 Csrc/main/java/com/example/todolist/TaskConfigurationProperties.java,c\2\c2592beb99be7e8b9f546e46753fc7847d648983
 e
 5src/main/java/com/example/todolist/model/Project.java,6\1\6116227df990b0e4f2eb525aa9f413b3f0161f7a
 v
 Fsrc/main/java/com/example/todolist/Repository/TaskGroupRepository.java,c\6\c620361b71ec44f80f19dee44bc6831cc0616454
+x
+Hsrc/main/java/com/example/todolist/model/Projection/GroupWriteModel.java,0\d\0d41442edb14bb9ade8b01c52cfec243218fd567
+7
+pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec

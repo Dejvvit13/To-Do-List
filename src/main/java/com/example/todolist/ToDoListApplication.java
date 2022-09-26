@@ -11,13 +11,14 @@ import javax.validation.Validator;
 @SpringBootApplication
 public class ToDoListApplication implements RepositoryRestConfigurer {
 
-    @Bean
-    Validator validator() {
-       return new LocalValidatorFactoryBean();
-    }
 
     public static void main(String[] args) {
         SpringApplication.run(ToDoListApplication.class, args);
     }
 
+
+    @Bean
+    Validator validator() {
+        return new LocalValidatorFactoryBean();
+    }
 }
