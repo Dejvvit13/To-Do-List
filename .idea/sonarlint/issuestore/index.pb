@@ -22,8 +22,6 @@ Gsrc/main/java/com/example/todolist/model/Projection/GroupReadModel.java,e\a\ea
 Ksrc/main/java/com/example/todolist/model/Projection/GroupTaskReadModel.java,7\f\7fa008cb650c81236992b369499c85bd0eab423c
 |
 Lsrc/main/java/com/example/todolist/model/Projection/GroupTaskWriteModel.java,e\e\ee1b139efeb9fb97668e05bd940968b3203d1768
-t
-Dsrc/main/java/com/example/todolist/Repository/ProjectRepository.java,5\9\59bed946197ffd5f483c036f770bbab0c84c0534
 s
 Csrc/main/java/com/example/todolist/TaskConfigurationProperties.java,c\2\c2592beb99be7e8b9f546e46753fc7847d648983
 e
@@ -34,3 +32,7 @@ x
 Hsrc/main/java/com/example/todolist/model/Projection/GroupWriteModel.java,0\d\0d41442edb14bb9ade8b01c52cfec243218fd567
 7
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
+t
+Dsrc/main/java/com/example/todolist/Repository/ProjectRepository.java,5\9\59bed946197ffd5f483c036f770bbab0c84c0534
+k
+;src/main/java/com/example/todolist/ToDoListApplication.java,3\5\35193e0adbf78902ba04ee11605e431e767e0fb1

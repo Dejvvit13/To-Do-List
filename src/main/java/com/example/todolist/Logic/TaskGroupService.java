@@ -6,14 +6,11 @@ import com.example.todolist.model.Projection.GroupReadModel;
 import com.example.todolist.model.Projection.GroupWriteModel;
 import com.example.todolist.model.TaskGroup;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service
-@Scope
+
 public class TaskGroupService {
 
     private final TaskGroupRepository groupRepository;

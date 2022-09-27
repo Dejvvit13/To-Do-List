@@ -7,13 +7,11 @@ import com.example.todolist.model.Project;
 import com.example.todolist.model.Projection.GroupReadModel;
 import com.example.todolist.model.Projection.GroupTaskWriteModel;
 import com.example.todolist.model.Projection.GroupWriteModel;
-import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service
 public class ProjectService {
 
     private final ProjectRepository projectRepository;
