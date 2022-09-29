@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface SqlProjectRepository extends JpaRepository<Project, Integer>, ProjectRepository {
+interface SqlProjectRepository extends JpaRepository<Project, Integer>, ProjectRepository {
 
     @Override
     @Query("from Project p join fetch p.steps")

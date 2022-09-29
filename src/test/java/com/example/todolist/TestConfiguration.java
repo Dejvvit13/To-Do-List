@@ -11,7 +11,7 @@ import org.springframework.data.domain.Pageable;
 import java.util.*;
 
 @Configuration
-public class TestConfiguration {
+class TestConfiguration {
     @Bean
     @Profile("integration")
     TaskRepository testRepo() {
