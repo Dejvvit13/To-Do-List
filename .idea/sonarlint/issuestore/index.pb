@@ -24,3 +24,9 @@ x
 Hsrc/main/java/com/example/todolist/model/Projection/GroupWriteModel.java,0\d\0d41442edb14bb9ade8b01c52cfec243218fd567
 t
 Dsrc/main/java/com/example/todolist/Repository/ProjectRepository.java,5\9\59bed946197ffd5f483c036f770bbab0c84c0534
+p
+@src/main/java/com/example/todolist/Logic/LogicConfiguration.java,d\1\d1f7f964e1aaa9be76426a45055217f5b1825be0
+t
+Dsrc/main/java/com/example/todolist/Adapter/SqlProjectRepository.java,4\e\4e3216d6a6590a0eff26ec58705a31995d5a6a03
+v
+Fsrc/main/java/com/example/todolist/Adapter/SqlTaskGroupRepository.java,a\0\a006bf39e67ef644d67f0f3c97d2472fc401bea9
