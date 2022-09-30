@@ -26,8 +26,15 @@ public class Task extends BaseTaskClass {
     private TaskGroup group;
 
     public Task(String description, LocalDateTime deadline) {
+        this(description, deadline, null);
+    }
+
+    public Task(String description, LocalDateTime deadline, TaskGroup group) {
         this.deadline = deadline;
         this.description = description;
+        if (group != null) {
+            this.group = group;
+        }
     }
 
     public void updateFrom(final Task source) {

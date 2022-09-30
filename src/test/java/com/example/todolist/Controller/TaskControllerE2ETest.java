@@ -33,7 +33,6 @@ class TaskControllerE2ETest {
         Task[] result = restTemplate.getForObject("http://localhost:" + port + "/tasks", Task[].class);
         //then
         assertThat(result).hasSize(initial + 2);
-
     }
 
 }

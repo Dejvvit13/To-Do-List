@@ -17,10 +17,12 @@ public class ProjectService {
     private final ProjectRepository projectRepository;
     private final TaskGroupRepository taskGroupRepository;
     private final TaskConfigurationProperties config;
+    private TaskGroupService taskGroupService;
 
-    public ProjectService(ProjectRepository projectRepository, TaskGroupRepository taskGroupRepository, TaskConfigurationProperties config) {
+    public ProjectService(ProjectRepository projectRepository, TaskGroupRepository taskGroupRepository, TaskGroupService tGService, TaskConfigurationProperties config) {
         this.projectRepository = projectRepository;
         this.taskGroupRepository = taskGroupRepository;
+        this.taskGroupService = tGService;
         this.config = config;
     }
 
@@ -37,11 +39,11 @@ public class ProjectService {
         if (!config.getTemplate().isAllowMultipleTasks() && taskGroupRepository.existsByDoneIsFalseAndProject_Id(projectId)) {
             throw new IllegalStateException("Only one undone group from project is allowed");
         }
-        GroupWriteModel groupWriteModel = projectRepository.findById(projectId)
+        return projectRepository.findById(projectId)
                 .map(project -> {
-                    var result = new GroupWriteModel();
-                    result.setDescription(project.getDescription());
-                    result.setTasks(
+                    var targetGroup = new GroupWriteModel();
+                    targetGroup.setDescription(project.getDescription());
+                    targetGroup.setTasks(
                             project.getSteps().stream()
                                     .map(projectStep -> {
                                         var model = new GroupTaskWriteModel();
@@ -50,12 +52,9 @@ public class ProjectService {
                                         return model;
                                     }).collect(Collectors.toSet())
                     );
-                    result.setProject(project);
-                    taskGroupRepository.save(result.toGroup());
-                    return result;
+                    return taskGroupService.createGroup(targetGroup);
                 })
                 .orElseThrow(() -> new IllegalArgumentException("Project with given id not found"));
-        return new GroupReadModel(groupWriteModel.toGroup());
     }
 
     // createGroup on GroupModel
