@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties("task")
 public class TaskConfigurationProperties {
 
-    private Template template;
+    private Template template = new Template();
 
     @Getter
     @Setter

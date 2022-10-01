@@ -34,5 +34,4 @@ class TaskControllerE2ETest {
         //then
         assertThat(result).hasSize(initial + 2);
     }
-
 }
