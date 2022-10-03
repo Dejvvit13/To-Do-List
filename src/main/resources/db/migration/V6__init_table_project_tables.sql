@@ -1,19 +1,17 @@
-CREATE TABLE projects
+create table projects
 (
-    id          INTEGER PRIMARY KEY AUTO_INCREMENT,
-    description VARCHAR(100) NOT NULL
+    id          int primary key auto_increment,
+    description varchar(100) not null
 );
-
-
-CREATE TABLE project_steps
+create table project_steps
 (
-    id               INTEGER PRIMARY KEY AUTO_INCREMENT,
-    description      VARCHAR(100) NOT NULL,
-    days_to_deadline INTEGER      NOT NULL,
-    project_id       INTEGER      NOT NULL,
-    FOREIGN KEY (project_id) REFERENCES projects (id)
+    id               int primary key auto_increment,
+    description      varchar(100) not null,
+    days_to_deadline int          not null,
+    project_id       int          not null,
+    foreign key (project_id) references projects (id)
 );
 alter table task_groups
-    add column project_id INTEGER NOT NULL;
+    add column project_id int null;
 alter table task_groups
     add foreign key (project_id) references projects (id);

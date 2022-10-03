@@ -5,10 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
 @Getter
@@ -16,13 +14,22 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Entity
 @Table(name = "tasks")
-public class Task extends BaseTaskClass {
+public class Task {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    @NotBlank(message = "Task group's description must not be empty")
+    private String description;
 
+    @Setter(AccessLevel.PUBLIC)
+    private boolean done;
     private LocalDateTime deadline;
-
+    @Embedded
     @Getter(AccessLevel.PACKAGE)
+    private Audit audit = new Audit();
     @ManyToOne
     @JoinColumn(name = "task_group_id")
+    @Getter(AccessLevel.PACKAGE)
     private TaskGroup group;
 
     public Task(String description, LocalDateTime deadline) {

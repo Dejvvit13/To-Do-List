@@ -1,6 +1,6 @@
 package com.example.todolist;
 
-import com.example.todolist.Repository.TaskRepository;
+import com.example.todolist.repository.TaskRepository;
 import com.example.todolist.model.Task;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -49,6 +49,11 @@ class TestConfiguration {
             @Override
             public boolean existsByDoneIsFalseAndGroup_Id(Integer groupId) {
                 return false;
+            }
+
+            @Override
+            public List<Task> findAllByGroup_Id(Integer groupId) {
+                return List.of();
             }
 
             @Override
