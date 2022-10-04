@@ -1,5 +1,6 @@
 package com.example.todolist.model;
 
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,6 +15,7 @@ public class ProjectStep {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
+    @Setter(AccessLevel.PACKAGE)
     private int id;
     @NotBlank(message = "Project's step description must not be empty")
     private String description;
@@ -21,6 +23,7 @@ public class ProjectStep {
 
     @ManyToOne
     @JoinColumn(name = "project_id")
+    @Getter(AccessLevel.PACKAGE)
     private Project project;
 
 }

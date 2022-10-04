@@ -12,17 +12,19 @@ import java.util.Set;
 @Entity
 @Getter
 @NoArgsConstructor
-@Setter(AccessLevel.PACKAGE)
+@Setter
 @Table(name = "projects")
 public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
+    @Setter(AccessLevel.PACKAGE)
     private int id;
     @NotBlank(message = "Project's description must not be empty")
     private String description;
 
     @OneToMany(mappedBy = "project")
+    @Setter(AccessLevel.PACKAGE)
     private Set<TaskGroup> groups;
     @Getter(AccessLevel.PUBLIC)
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "project")

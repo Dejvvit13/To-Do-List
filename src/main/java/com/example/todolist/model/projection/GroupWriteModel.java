@@ -17,15 +17,16 @@ public class GroupWriteModel {
     private Set<GroupTaskWriteModel> tasks;
     private Project project;
 
-    public TaskGroup toGroup() {
+    public TaskGroup toGroup(final Project project) {
         var result = new TaskGroup();
-        result.setProject(project);
+        result.setProject(this.project);
         result.setDescription(description);
         result.setTasks(
                 tasks.stream()
                         .map(source -> source.toTask(result))
                         .collect(Collectors.toSet())
         );
+        result.setProject(project);
         return result;
     }
 

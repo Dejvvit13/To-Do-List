@@ -1,5 +1,6 @@
 package com.example.todolist.logic;
 
+import com.example.todolist.model.Project;
 import com.example.todolist.repository.TaskGroupRepository;
 import com.example.todolist.repository.TaskRepository;
 import com.example.todolist.model.projection.GroupReadModel;
@@ -22,9 +23,12 @@ public class TaskGroupService {
     }
 
     public GroupReadModel createGroup(GroupWriteModel source) {
-        TaskGroup result = groupRepository.save(source.toGroup());
-        return new GroupReadModel(result);
+        return createGroup(source, null);
+    }
 
+    GroupReadModel createGroup(GroupWriteModel source, final Project project) {
+        TaskGroup result = groupRepository.save(source.toGroup(project));
+        return new GroupReadModel(result);
     }
 
     public List<GroupReadModel> readAll() {

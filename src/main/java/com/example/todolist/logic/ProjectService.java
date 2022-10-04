@@ -1,5 +1,6 @@
 package com.example.todolist.logic;
 
+import com.example.todolist.model.projection.ProjectWriteModel;
 import com.example.todolist.repository.ProjectRepository;
 import com.example.todolist.repository.TaskGroupRepository;
 import com.example.todolist.TaskConfigurationProperties;
@@ -30,8 +31,8 @@ public class ProjectService {
         return projectRepository.findAll();
     }
 
-    public Project createProject(Project source) {
-        return projectRepository.save(source);
+    public Project createProject(final ProjectWriteModel toSave) {
+        return projectRepository.save(toSave.toProject());
     }
 
     // createGroup on GroupWriteModel DTO
@@ -52,13 +53,13 @@ public class ProjectService {
                                         return model;
                                     }).collect(Collectors.toSet())
                     );
-                    return taskGroupService.createGroup(targetGroup);
+                    return taskGroupService.createGroup(targetGroup, project);
                 })
                 .orElseThrow(() -> new IllegalArgumentException("Project with given id not found"));
     }
 
-    // createGroup on GroupModel
-    //    public GroupReadModel createGroup(int projectId, LocalDateTime deadline) {
+//      createGroup on GroupModel
+//        public GroupReadModel createGroup(int projectId, LocalDateTime deadline) {
 //        if (!config.getTemplate().isAllowMultipleTasks() && taskGroupRepository.existsByDoneIsFalseAndProject_Id(projectId)) {
 //            throw new IllegalStateException("Only one undone group from project is allowed");
 //        }
