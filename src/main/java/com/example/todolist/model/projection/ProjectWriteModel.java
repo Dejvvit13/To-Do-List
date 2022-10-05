@@ -19,6 +19,10 @@ public class ProjectWriteModel {
     @Valid
     private List<ProjectStep> steps = new ArrayList<>();
 
+    public ProjectWriteModel() {
+        steps.add(new ProjectStep());
+    }
+
     public Project toProject() {
         var result = new Project();
         result.setDescription(this.description);
