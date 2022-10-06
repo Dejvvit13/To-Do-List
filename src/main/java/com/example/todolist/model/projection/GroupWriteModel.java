@@ -5,17 +5,25 @@ import com.example.todolist.model.TaskGroup;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Set;
-import java.util.stream.Collectors;
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
 public class GroupWriteModel {
 
     private String id;
+    @NotBlank(message = "Task group's description must not be empty")
     private String description;
-    private Set<GroupTaskWriteModel> tasks;
+    @Valid
+    private List<GroupTaskWriteModel> tasks = new ArrayList<>();
     private Project project;
+
+    public GroupWriteModel() {
+        tasks.add(new GroupTaskWriteModel());
+    }
 
     public TaskGroup toGroup(final Project project) {
         var result = new TaskGroup();
@@ -24,7 +32,7 @@ public class GroupWriteModel {
         result.setTasks(
                 tasks.stream()
                         .map(source -> source.toTask(result))
-                        .collect(Collectors.toSet())
+                        .toList()
         );
         result.setProject(project);
         return result;

@@ -1,17 +1,16 @@
 package com.example.todolist.logic;
 
-import com.example.todolist.model.projection.ProjectWriteModel;
-import com.example.todolist.repository.ProjectRepository;
-import com.example.todolist.repository.TaskGroupRepository;
 import com.example.todolist.TaskConfigurationProperties;
 import com.example.todolist.model.Project;
 import com.example.todolist.model.projection.GroupReadModel;
 import com.example.todolist.model.projection.GroupTaskWriteModel;
 import com.example.todolist.model.projection.GroupWriteModel;
+import com.example.todolist.model.projection.ProjectWriteModel;
+import com.example.todolist.repository.ProjectRepository;
+import com.example.todolist.repository.TaskGroupRepository;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class ProjectService {
 
@@ -51,7 +50,7 @@ public class ProjectService {
                                         model.setDescription(projectStep.getDescription());
                                         model.setDeadline(deadline.plusDays(projectStep.getDaysToDeadline()));
                                         return model;
-                                    }).collect(Collectors.toSet())
+                                    }).toList()
                     );
                     return taskGroupService.createGroup(targetGroup, project);
                 })

@@ -7,7 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.util.Set;
+import java.util.List;
 
 @Getter
 @Setter
@@ -24,7 +24,7 @@ public class TaskGroup {
     private boolean done;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "group")
-    private Set<Task> tasks;
+    private List<Task> tasks;
 
     @ManyToOne
     @JoinColumn(name = "project_id")

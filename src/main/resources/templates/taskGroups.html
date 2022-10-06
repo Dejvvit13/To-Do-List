@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Groups</title>
+    <link rel="stylesheet" href="https://unpkg.com/awsm.css/dist/awsm_theme_big-stone.min.css">
+    <style>
+        .Bd {
+            border: 1px solid #000;
+        }
+
+        .Bdc\(RED\) {
+            border-color: red !important;
+        }
+
+        .C\(RED\) {
+            color: red;
+        }
+
+        .M\(0\) {
+            margin: 0;
+        }
+
+        .P\(0\) {
+            padding: 0;
+        }
+
+        .P\(10px\) {
+            padding: 10px;
+        }
+
+    </style>
+</head>
+<body>
+<main>
+    <h4 th:if="${message != null}" th:text="${message}"></h4>
+    <dl th:each="group : ${taskGroups}" class="Bd P(10px)">
+        <dt>
+            <input type="checkbox">
+            <span th:text="${group.description}">!!!</span>
+            <small th:text="| (${group.deadline})|">...</small>
+        </dt>
+        <hr class="M(0)"/>
+        <dd>
+            <a th:href="@{/tasks.html(group=${group.id})}">
+                <ul class="P(0)">
+                    <li th:each="task : ${group.tasks}">
+                        <span th:unless="${task.done}" th:text="${task.description}"></span>
+                        <del th:if="${task.done}" th:text="${task.description}"></del>
+                    </li>
+                </ul>
+            </a>
+        </dd>
+    </dl>
+    <fieldset>
+        <legend>New Group</legend>
+        <form th:action="@{/groups}" method="post" th:object="${taskGroup}">
+            <label>Description
+                <input type="text" th:field="*{description}" th:errorclass="'Bdc(RED)'">
+            </label>
+            <fieldset th:each="task,taskStat : *{tasks}">
+                <legend th:text="|Task ${taskStat.index +1}|"></legend>
+                <label>Description
+                    <input type="text" th:field="*{tasks[__${taskStat.index}__].description}"
+                           th:errorclass="'Bdc(RED)'">
+                </label>
+                <label>Deadline
+                    <input type="date"
+                           th:field="*{tasks[__${taskStat.index}__].deadline}"
+                           th:errorclass="'Bdc(RED)'">
+                </label>
+            </fieldset>
+            <div>
+                <button type="submit" name="addTask">+</button>
+            </div>
+            <p>
+                <button type="submit">ADD</button>
+                <button type="reset">RESET</button>
+            </p>
+        </form>
+
+    </fieldset>
+
+</main>
+</body>
+</html>

@@ -32,6 +32,7 @@ public class Task {
     @Getter(AccessLevel.PACKAGE)
     private TaskGroup group;
 
+
     public Task(String description, LocalDateTime deadline) {
         this(description, deadline, null);
     }
