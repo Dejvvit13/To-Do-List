@@ -50,7 +50,7 @@ public class TaskGroupController {
         return TASK_GROUPS_SITE;
     }
 
-    @PostMapping(produces = MediaType.TEXT_HTML_VALUE,consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @PostMapping(produces = MediaType.TEXT_HTML_VALUE, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     String addTaskGroup(@ModelAttribute("taskGroup") @Valid GroupWriteModel current, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             return TASK_GROUPS_SITE;
@@ -62,9 +62,15 @@ public class TaskGroupController {
         return TASK_GROUPS_SITE;
     }
 
-    @PostMapping(params = "addTask", produces = MediaType.TEXT_HTML_VALUE ,consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @PostMapping(params = "addTask", produces = MediaType.TEXT_HTML_VALUE, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     String addGroupTask(@ModelAttribute("taskGroup") GroupWriteModel current) {
         current.getTasks().add(new GroupTaskWriteModel());
+        return TASK_GROUPS_SITE;
+    }
+
+    @PostMapping(params = "removeTask", produces = MediaType.TEXT_HTML_VALUE, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    String removeGroupTask(@ModelAttribute("taskGroup") GroupWriteModel current) {
+        current.getTasks().remove(current.getTasks().size() - 1);
         return TASK_GROUPS_SITE;
     }
 

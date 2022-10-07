@@ -12,5 +12,4 @@ public interface ProjectRepository {
     Optional<Project> findById(int id);
 
     Project save(Project project);
-
 }

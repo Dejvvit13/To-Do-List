@@ -31,6 +31,14 @@
             padding: 10px;
         }
 
+        .remove-group {
+            display: inline-block;
+            position: relative;
+            right: 1%;
+            top: 1%;
+        }
+
+
     </style>
 </head>
 <body>
@@ -41,6 +49,9 @@
             <input type="checkbox">
             <span th:text="${group.description}">!!!</span>
             <small th:text="| (${group.deadline})|">...</small>
+            <a th:href="@{/deleteGroup/{groupId}(groupId=${group.id})}" class="P(0) M(0) remove-group">
+                <img class="M(0) P(0) image-remove"
+                    th:src="@{/images/delete.png}" alt="del-icon"></a>
         </dt>
         <hr class="M(0)"/>
         <dd>
@@ -67,13 +78,14 @@
                            th:errorclass="'Bdc(RED)'">
                 </label>
                 <label>Deadline
-                    <input type="date"
+                    <input type="datetime-local" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}"
                            th:field="*{tasks[__${taskStat.index}__].deadline}"
                            th:errorclass="'Bdc(RED)'">
                 </label>
             </fieldset>
             <div>
                 <button type="submit" name="addTask">+</button>
+                <button type="submit" name="removeTask">-</button>
             </div>
             <p>
                 <button type="submit">ADD</button>

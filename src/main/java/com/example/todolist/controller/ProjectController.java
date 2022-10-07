@@ -33,7 +33,8 @@ public class ProjectController {
 
     @GetMapping
     String showProjects(Model model) {
-        model.addAttribute("project", new ProjectWriteModel());
+        ProjectWriteModel project = new ProjectWriteModel();
+        model.addAttribute("project", project);
         return PROJECT_SITE;
     }
 
@@ -55,6 +56,12 @@ public class ProjectController {
         return PROJECT_SITE;
     }
 
+    @PostMapping(params = "removeStep")
+    String removeProjectStep(@ModelAttribute("project") ProjectWriteModel current) {
+        current.getSteps().remove(current.getSteps().size() - 1);
+        return PROJECT_SITE;
+    }
+
     @PostMapping("/{id}")
     String createGroup(@ModelAttribute("project") ProjectWriteModel current,
                        Model model, @PathVariable int id,
@@ -62,9 +69,9 @@ public class ProjectController {
     ) {
         try {
             service.createGroup(id, deadline);
-            model.addAttribute("message", "Added Group");
+            model.addAttribute("message", "Added Project");
         } catch (IllegalStateException | IllegalArgumentException e) {
-            model.addAttribute("message", "Error while creating group");
+            model.addAttribute("message", "Error while creating project");
         }
         return PROJECT_SITE;
     }
