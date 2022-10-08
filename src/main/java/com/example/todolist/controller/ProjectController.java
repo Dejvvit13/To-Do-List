@@ -12,7 +12,10 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.time.LocalDateTime;
+import java.util.Comparator;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/projects")
@@ -28,7 +31,12 @@ public class ProjectController {
 
     @ModelAttribute("projects")
     List<Project> getProjects() {
-        return service.readAll();
+        List<Project> projects = service.readAll();
+        projects.forEach(p -> p.setSteps(p.getSteps()
+                .stream()
+                .sorted(Comparator.comparing(ProjectStep::getDaysToDeadline))
+                .collect(Collectors.toCollection(LinkedHashSet::new))));
+        return projects;
     }
 
     @GetMapping

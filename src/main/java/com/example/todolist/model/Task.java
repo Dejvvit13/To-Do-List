@@ -23,6 +23,7 @@ public class Task {
 
     @Setter(AccessLevel.PUBLIC)
     private boolean done;
+    
     private LocalDateTime deadline;
     @Embedded
     @Getter(AccessLevel.PACKAGE)

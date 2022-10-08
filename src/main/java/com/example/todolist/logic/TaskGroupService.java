@@ -26,6 +26,12 @@ public class TaskGroupService {
         return createGroup(source, null);
     }
 
+    public GroupReadModel findGroup(int id) {
+        return groupRepository.findById(id)
+                .map(GroupReadModel::new)
+                .orElseThrow(() -> new IllegalArgumentException("TaskGroup with given id not found"));
+    }
+
     GroupReadModel createGroup(GroupWriteModel source, final Project project) {
         TaskGroup result = groupRepository.save(source.toGroup(project));
         return new GroupReadModel(result);
@@ -36,6 +42,8 @@ public class TaskGroupService {
                 .map(GroupReadModel::new)
                 .toList();
     }
+
+
 
     public void toggleGroup(int id) {
 
@@ -48,4 +56,6 @@ public class TaskGroupService {
         groupRepository.save(result);
 
     }
+
+
 }

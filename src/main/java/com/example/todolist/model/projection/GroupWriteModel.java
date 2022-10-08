@@ -14,7 +14,7 @@ import java.util.List;
 @Setter
 public class GroupWriteModel {
 
-    private String id;
+    private int id;
     @NotBlank(message = "Task group's description must not be empty")
     private String description;
     @Valid

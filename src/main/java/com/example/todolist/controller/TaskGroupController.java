@@ -74,7 +74,24 @@ public class TaskGroupController {
         return TASK_GROUPS_SITE;
     }
 
+    @GetMapping(value = "/edit/{id}", produces = MediaType.TEXT_HTML_VALUE)
+    String editTaskGroup(@PathVariable("id") int id, Model model) {
+        if (!model.containsAttribute("taskGroup")) {
+            model.addAttribute("taskGroup", taskGroupService.findGroup(id));
+        }
+        return "taskGroupEdit";
+    }
 
+    @PostMapping(value = "/edit/{id}", produces = MediaType.TEXT_HTML_VALUE, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    String updateTaskGroup(@PathVariable("id") int id, @ModelAttribute("taskGroup") @Valid GroupWriteModel current, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            return "taskGroupEdit";
+        }
+
+        return "redirect:/groups";
+    }
+
+    // JSON API
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     ResponseEntity<GroupReadModel> createGroup(@RequestBody @Valid GroupWriteModel toCreate) {
@@ -102,16 +119,4 @@ public class TaskGroupController {
         taskGroupService.toggleGroup(id);
         return ResponseEntity.noContent().build();
     }
-
-    @ExceptionHandler(IllegalArgumentException.class)
-    ResponseEntity<String> handleIllegalArgument(IllegalArgumentException e) {
-        return ResponseEntity.notFound().build();
-    }
-
-    @ExceptionHandler(IllegalStateException.class)
-    ResponseEntity<String> handleIllegalState(IllegalStateException e) {
-        return ResponseEntity.badRequest().body(e.getMessage());
-    }
-
-
 }

@@ -9,7 +9,6 @@ import lombok.ToString;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -33,7 +32,7 @@ public class GroupReadModel {
                 .ifPresent(date -> deadline = date);
         tasks = source.getTasks().stream()
                 .map(GroupTaskReadModel::new)
-                .collect(Collectors.toList());
+                .toList();
     }
 
 }

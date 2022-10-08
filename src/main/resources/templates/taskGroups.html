@@ -49,9 +49,7 @@
             <input type="checkbox">
             <span th:text="${group.description}">!!!</span>
             <small th:text="| (${group.deadline})|">...</small>
-            <a th:href="@{/deleteGroup/{groupId}(groupId=${group.id})}" class="P(0) M(0) remove-group">
-                <img class="M(0) P(0) image-remove"
-                    th:src="@{/images/delete.png}" alt="del-icon"></a>
+            <a th:href="@{groups/edit/{id}(id=${group.id})}" class="P(0) M(0) edit-group">EDIT</a>
         </dt>
         <hr class="M(0)"/>
         <dd>
