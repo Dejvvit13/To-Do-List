@@ -9,6 +9,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -32,8 +33,7 @@ public class GroupWriteModel {
         result.setTasks(
                 tasks.stream()
                         .map(source -> source.toTask(result))
-                        .toList()
-        );
+                        .collect(Collectors.toSet()));
         result.setProject(project);
         return result;
     }

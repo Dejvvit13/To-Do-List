@@ -1,5 +1,6 @@
 package com.example.todolist.model;
 
+import com.example.todolist.model.event.TaskEvent;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,9 +22,9 @@ public class Task {
     @NotBlank(message = "Task group's description must not be empty")
     private String description;
 
-    @Setter(AccessLevel.PUBLIC)
+    @Setter(AccessLevel.PRIVATE)
     private boolean done;
-    
+
     private LocalDateTime deadline;
     @Embedded
     @Getter(AccessLevel.PACKAGE)
@@ -44,6 +45,11 @@ public class Task {
         if (group != null) {
             this.group = group;
         }
+    }
+
+    public TaskEvent toggle() {
+        this.done = !this.done;
+        return TaskEvent.changed(this);
     }
 
     public void updateFrom(final Task source) {
