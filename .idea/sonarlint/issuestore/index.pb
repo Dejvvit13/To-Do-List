@@ -48,8 +48,6 @@ Hsrc/test/java/com/example/todolist/controller/TaskControllerE2ETest.java,2\5\2
 Psrc/test/java/com/example/todolist/controller/TaskControllerIntegrationTest.java,5\e\5e33b34fa55bfa981bc332a6abe6c7a885c03604
 …
 Usrc/test/java/com/example/todolist/controller/TaskControllerLightIntegrationTest.java,2\9\29213ab2e448b76190ed73b2135c5df34d5d42f1
-q
-Asrc/main/java/com/example/todolist/repository/TaskRepository.java,4\f\4ff6fb2ea6ece32a98a30e54a4b7bcc7c1fbdad6
 i
 9src/main/java/com/example/todolist/logic/TaskService.java,3\d\3d709d7dcfeff018c7875692e2740a7434ce688b
 7
