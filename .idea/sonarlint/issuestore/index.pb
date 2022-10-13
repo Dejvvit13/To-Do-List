@@ -23,12 +23,8 @@ p
 @src/main/java/com/example/todolist/Logic/LogicConfiguration.java,d\1\d1f7f964e1aaa9be76426a45055217f5b1825be0
 q
 Asrc/main/java/com/example/todolist/Controller/InfoController.java,7\2\722d41e14f019b6c9c3f6c78dce5853c1afb0db3
-s
-Csrc/main/java/com/example/todolist/TaskConfigurationProperties.java,c\2\c2592beb99be7e8b9f546e46753fc7847d648983
 x
 Hsrc/test/java/com/example/todolist/Controller/TaskControllerE2ETest.java,d\3\d33a6bb7f13442bc198385deef497546a029c201
-q
-Asrc/main/java/com/example/todolist/controller/InfoController.java,1\f\1f805f1f558a0363cc8011ec6dee82b27f93b29d
 o
 ?src/main/java/com/example/todolist/controller/LoggerFilter.java,8\6\8633e63c61722d4886d2d4879b07f7a2b20e76ac
 t
@@ -67,8 +63,6 @@ Jsrc/main/java/com/example/todolist/model/projection/ProjectWriteModel.java,2\e
 Msrc/main/java/com/example/todolist/controller/IllegalExceptionProcessing.java,d\5\d5c3f3450d567ab3ae2761ddb12097dec965c224
 „
 Tsrc/main/java/com/example/todolist/controller/IllegalExceptionsControllerAdvice.java,2\f\2f276bba25547ed2e9039c0bfb121d22548ed072
-t
-Dsrc/main/java/com/example/todolist/controller/ProjectController.java,b\6\b683b23ba6deb7692f9796275f359d51de789137
 j
 :src/main/java/com/example/todolist/aspect/LogicAspect.java,7\8\7826de42a46320f8205cbaa52f45f65760cd4102
 p
@@ -114,3 +108,7 @@ k
 :
 
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
+x
+Hsrc/main/java/com/example/todolist/reports/ChangedTaskEventListener.java,8\d\8dce96a5b7cfe1687f2431509b9c400a7bb7d8ec
+s
+Csrc/main/java/com/example/todolist/TaskConfigurationProperties.java,c\2\c2592beb99be7e8b9f546e46753fc7847d648983

@@ -6,12 +6,15 @@ import com.example.todolist.model.ProjectStep;
 import com.example.todolist.model.projection.ProjectWriteModel;
 import io.micrometer.core.annotation.Timed;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.LinkedHashSet;
@@ -20,6 +23,7 @@ import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/projects")
+@PreAuthorize()
 public class ProjectController {
 
     private final ProjectService service;
@@ -41,10 +45,10 @@ public class ProjectController {
     }
 
     @GetMapping
-    String showProjects(Model model) {
-        ProjectWriteModel project = new ProjectWriteModel();
-        model.addAttribute("project", project);
-        return PROJECT_SITE;
+    String showProjects(Model model, Authentication auth, Principal p) {
+            ProjectWriteModel project = new ProjectWriteModel();
+            model.addAttribute("project", project);
+            return PROJECT_SITE;
     }
 
     @PostMapping

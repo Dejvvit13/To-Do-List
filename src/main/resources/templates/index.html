@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>MAIN SITE</title>
+    <link rel="stylesheet" href="https://unpkg.com/awsm.css/dist/awsm_theme_big-stone.min.css">
+    <style>
+        a{
+            margin: 10px;
+            text-decoration: none;
+        }
+
+    </style>
+</head>
+<body>
+<main>
+    <a href="/projects" sec:authorize="hasRole('ROLE_ADMIN')">
+        <button>PROJECTS</button>
+    </a>
+    <a href="/groups">
+        <button>GROUPS</button>
+    </a>
+    <a href="../static/tasks.html">
+        <button>TASKS</button>
+    </a>
+    <br>
+    <hr>
+    <a href="/sso/login">
+        <button>Log In</button>
+    </a>
+    <a href="/logout">
+        <button>Log out</button>
+    </a>
+</main>
+</body>
+</html>
